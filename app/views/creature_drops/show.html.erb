@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @creature_drop %>
+
+<div>
+  <%= link_to "Edit this creature drop", edit_creature_drop_path(@creature_drop) %> |
+  <%= link_to "Back to creature drops", creature_drops_path %>
+
+  <%= button_to "Destroy this creature drop", @creature_drop, method: :delete %>
+</div>

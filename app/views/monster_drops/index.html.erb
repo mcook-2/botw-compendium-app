@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Monster drops</h1>
+
+<div id="monster_drops">
+  <% @monster_drops.each do |monster_drop| %>
+    <%= render monster_drop %>
+    <p>
+      <%= link_to "Show this monster drop", monster_drop %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New monster drop", new_monster_drop_path %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @equipment_location %>
+
+<div>
+  <%= link_to "Edit this equipment location", edit_equipment_location_path(@equipment_location) %> |
+  <%= link_to "Back to equipment locations", equipment_locations_path %>
+
+  <%= button_to "Destroy this equipment location", @equipment_location, method: :delete %>
+</div>

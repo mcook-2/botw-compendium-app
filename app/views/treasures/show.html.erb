@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @treasure %>
+
+<div>
+  <%= link_to "Edit this treasure", edit_treasure_path(@treasure) %> |
+  <%= link_to "Back to treasures", treasures_path %>
+
+  <%= button_to "Destroy this treasure", @treasure, method: :delete %>
+</div>

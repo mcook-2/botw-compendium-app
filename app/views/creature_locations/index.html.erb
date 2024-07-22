@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Creature locations</h1>
+
+<div id="creature_locations">
+  <% @creature_locations.each do |creature_location| %>
+    <%= render creature_location %>
+    <p>
+      <%= link_to "Show this creature location", creature_location %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New creature location", new_creature_location_path %>

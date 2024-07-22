@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Monster locations</h1>
+
+<div id="monster_locations">
+  <% @monster_locations.each do |monster_location| %>
+    <%= render monster_location %>
+    <p>
+      <%= link_to "Show this monster location", monster_location %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New monster location", new_monster_location_path %>

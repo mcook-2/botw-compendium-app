@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Drops</h1>
+
+<div id="drops">
+  <% @drops.each do |drop| %>
+    <%= render drop %>
+    <p>
+      <%= link_to "Show this drop", drop %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New drop", new_drop_path %>

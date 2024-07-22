@@ -1,0 +1,2 @@
+module EquipmentPropertiesHelper
+end

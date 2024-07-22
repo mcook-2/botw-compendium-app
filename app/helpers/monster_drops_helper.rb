@@ -1,0 +1,2 @@
+module MonsterDropsHelper
+end
