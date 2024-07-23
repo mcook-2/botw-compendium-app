@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   resources :equipment_properties
   resources :equipment
   resources :monsters
+
+  root 'pages#home'
+  get 'pages/home'
+  get "creatures/index"
+  get "treasures/index"
+  get "materials/index"
+  get "equipment/index"
+  get "monsters/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
