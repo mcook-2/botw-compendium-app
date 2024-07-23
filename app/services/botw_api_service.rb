@@ -4,13 +4,6 @@ class BotwApiService
   include HTTParty
   base_uri 'https://botw-compendium.herokuapp.com/api/v3/compendium'
 
-  def Initialize()
-    @locations_array =[]
-    @drops_array = []
-    @equipment_propteries_array = []
-
-  end
-
   def fetch_monsters
     fetch_data('/category/monsters')
   end
@@ -30,6 +23,93 @@ class BotwApiService
   def fetch_treasures
     fetch_data('/category/treasures')
   end
+
+  def extract_common_locations
+    response = self.class.get('/', query: { game: 'botw' })
+    all_common_locations = []
+
+    if response.success?
+      entries = JSON.parse(response.body)
+
+      # Check if 'data' is an array before iterating
+      if entries['data'].is_a?(Array)
+        entries['data'].each do |item|
+          all_common_locations.concat(item['common_locations']) if item['common_locations']
+        end
+      else
+        puts "Warning: 'data' is not an array or is missing"
+      end
+    else
+      # Handle the error case, e.g., logging, raising an error, etc.
+      puts "Error: Unable to fetch data from the API"
+    end
+
+    # Remove duplicates if needed
+    all_common_locations.uniq!
+
+    # Return the result
+    all_common_locations
+  end
+
+  def extract_drops
+    response = self.class.get('/category/equipment', query: { game: 'botw' })
+    all_drops = []
+
+    if response.success?
+      entries = JSON.parse(response.body)
+
+      # Check if 'data' is an array before iterating
+      if entries['data'].is_a?(Array)
+        entries['data'].each do |item|
+          all_drops.concat(item['drops']) if item['drops']
+        end
+      else
+        puts "Warning: 'data' is not an array or is missing"
+      end
+    else
+      # Handle the error case, e.g., logging, raising an error, etc.
+      puts "Error: Unable to fetch data from the API"
+    end
+
+    # Remove duplicates if needed
+    all_drops.uniq!
+
+    # Return the result
+    all_drops
+  end
+
+  def extract_equipment_properties
+    response = self.class.get('/category/equipment', query: { game: 'botw' })
+    all_equipment_properties = []
+
+    if response.success?
+      entries = JSON.parse(response.body)
+
+      # Check if 'data' is an array before iterating
+      if entries['data'].is_a?(Array)
+        entries['data'].each do |item|
+          # Extract the properties you need
+          equipment_properties = {
+            id_in_compendium: item['id'],
+            properties: {
+              attack: item['properties']&.dig('attack'),
+              defense: item['properties']&.dig('defense')
+            }
+          }
+          all_equipment_properties << equipment_properties
+        end
+      else
+        puts "Warning: 'data' is not an array or is missing"
+      end
+    else
+      # Handle the error case, e.g., logging, raising an error, etc.
+      puts "Error: Unable to fetch data from the API"
+    end
+
+    # Return the result
+    all_equipment_properties
+  end
+
   private
 
   def fetch_data(endpoint)
@@ -43,6 +123,7 @@ class BotwApiService
       []
     end
   end
+
 
   def parse_entry(entry)
     case entry['category']
