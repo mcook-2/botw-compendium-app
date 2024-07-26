@@ -6,56 +6,62 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+
 
 
   </head>
 
-  <header class="text-white p-3">
-  <h1 class="text-center">My Rails Application</h1>
-  <nav>
-    <ul class="nav">
-      <li class="nav-item">
-        <%= link_to 'Home', root_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'about', about_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to creatures_path, class: 'nav-link' do %>
-          <%= image_tag 'creatures.png', alt: 'Creatures', class: 'nav-img' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to treasures_path, class: 'nav-link' do %>
-          <%= image_tag 'treasures.png', alt: 'Treasures', class: 'nav-img' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to materials_path, class: 'nav-link' do %>
-          <%= image_tag 'materials.png', alt: 'Materials', class: 'nav-img' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to equipment_index_path, class: 'nav-link' do %>
-          <%= image_tag 'equipment.png', alt: 'Equipment', class: 'nav-img' %>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to monsters_path, class: 'nav-link' do %>
-          <%= image_tag 'monsters.png', alt: 'Monsters', class: 'nav-img' %>
-        <% end %>
-      </li>
-    </ul>
-  </nav>
+<header>
+  <div class="col-fluid">
+    <h2>My Rails Application</h2>
+  </div>
 </header>
 
-
-
-
-
   <body>
-    <%= yield %>
+    <main>
+      <div class ="app-container">
+        <nav>
+          <div class="nav-header">
+            <div class="nav-item">
+              <%= link_to 'Home', root_path, class: 'nav-link' %>
+            </div>
+            <div class="nav-item">
+              <%= link_to 'about', about_path, class: 'nav-link' %>
+            </div>
+            <div class="nav-item">
+              <%= link_to creatures_path, class: 'nav-link' do %>
+                <%= image_tag 'creatures.png', alt: 'Creatures', class: 'nav-img' %>
+              <% end %>
+            </div>
+            <div class="nav-item">
+              <%= link_to monsters_path, class: 'nav-link' do %>
+                <%= image_tag 'monsters.png', alt: 'Monsters', class: 'nav-img' %>
+              <% end %>
+            </div>
+            <div class="nav-item">
+              <%= link_to materials_path, class: 'nav-link' do %>
+                <%= image_tag 'materials.png', alt: 'Materials', class: 'nav-img' %>
+              <% end %>
+            </div>
+            <div class="nav-item">
+              <%= link_to equipment_index_path, class: 'nav-link' do %>
+                <%= image_tag 'equipment.png', alt: 'Equipment', class: 'nav-img' %>
+              <% end %>
+            </div>
+            <div class="nav-item">
+              <%= link_to treasures_path, class: 'nav-link' do %>
+                <%= image_tag 'treasures.png', alt: 'Treasures', class: 'nav-img' %>
+              <% end %>
+            </div>
+          </div>
+        </nav>
+
+      <%= yield %>
+      </div>
+    </main>
   </body>
+
+
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
 </html>

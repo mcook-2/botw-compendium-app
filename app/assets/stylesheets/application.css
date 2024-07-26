@@ -22,9 +22,14 @@
 }
 
 body {
-  background-image: url("https://i.pinimg.com/originals/08/bd/c5/08bdc5060ee7eb4708339c693865ff4d.jpg");
-  background-attachment: fixed;
-  color: white;
+  margin: 0;
+  padding-top: 7.75rem; /* Adjusted to account for the header and nav */
+  background-color: rgb(26, 20, 20);
+}
+
+.app-container{
+
+
 }
 
 @font-face {
@@ -45,33 +50,51 @@ header h1 {
   text-align: center;
 }
 
-nav {
+header {
+  background-image: url("https://i.pinimg.com/originals/08/bd/c5/08bdc5060ee7eb4708339c693865ff4d.jpg");
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem;
+  height: 4rem;
+}
+
+.nav-header {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  position: fixed;
+  top: 4rem; /* Adjusted to account for the header */
+  width: 100%;
+  z-index: 999;
   gap: 5px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 0.5rem 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(26, 20, 20);
 }
 
-button {
-  cursor: pointer;
+.nav-item {
+  margin: 0.5rem;
+  transition: transform 0.5s ease;
 }
 
-nav button {
-  background-color: transparent;
-  border: none;
-  filter: grayscale(0.7);
-  transition: filter 300ms;
+.nav-img {
+  width: 2.938rem;
+  height: 2.25rem;
 }
 
-nav button:hover {
-  filter: grayscale(0.3);
+.nav-item:hover {
+  transform: scale(1.2);
+  box-shadow: -1px 1px 16px 8px rgba(26, 112, 185, 0.85);
 }
 
-nav button:active,
-nav button.selected {
-  filter: grayscale(0);
+.nav-item:active,
+.nav-item.selected {
+  transform: scale(1.2);
+  box-shadow: -1px 1px 16px 8px rgba(26, 112, 185, 0.85);
 }
 
 /* Styles */
