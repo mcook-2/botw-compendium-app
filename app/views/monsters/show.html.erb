@@ -1,10 +1,36 @@
 <p style="color: green"><%= notice %></p>
+<h1><%= @monster.name %></h1>
 
-<%= render @monster %>
+<p><%= @monster.description %></p>
 
-<div>
-  <%= link_to "Edit this monster", edit_monster_path(@monster) %> |
-  <%= link_to "Back to monsters", monsters_path %>
+<% if @monster.image_url.present? %>
+  <p>
+    <img src="<%= @monster.image_url %>" alt="<%= @monster.name %>" />
+  </p>
+<% end %>
 
-  <%= button_to "Destroy this monster", @monster, method: :delete %>
-</div>
+<p><strong>DLC:</strong> <%= @monster.dlc ? 'Yes' : 'No' %></p>
+
+<h2>Locations</h2>
+<% if @monster.monster_locations.any? %>
+  <ul>
+    <% @monster.monster_locations.each do |monster_location| %>
+      <li><%= monster_location.location.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No locations available for this monster.</p>
+<% end %>
+
+<h2>Drops</h2>
+<% if @monster.monster_drops.any? %>
+  <ul>
+    <% @monster.monster_drops.each do |monster_drop| %>
+      <li><%= monster_drop.drop.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No drops available for this monster.</p>
+<% end %>
+
+<%= link_to 'Back', monsters_path %>

@@ -1,10 +1,37 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @treasure %>
+<h1><%= @treasure.name %></h1>
 
-<div>
-  <%= link_to "Edit this treasure", edit_treasure_path(@treasure) %> |
-  <%= link_to "Back to treasures", treasures_path %>
+<p><%= @treasure.description %></p>
 
-  <%= button_to "Destroy this treasure", @treasure, method: :delete %>
-</div>
+<% if @treasure.image_url.present? %>
+  <p>
+    <img src="<%= @treasure.image_url %>" alt="<%= @treasure.name %>" />
+  </p>
+<% end %>
+
+<p><strong>DLC:</strong> <%= @treasure.dlc ? 'Yes' : 'No' %></p>
+
+<h2>Locations</h2>
+<% if @treasure.treasure_locations.any? %>
+  <ul>
+    <% @treasure.treasure_locations.each do |treasure_location| %>
+      <li><%= treasure_location.location.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No locations available for this treasure.</p>
+<% end %>
+
+<h2>Drops</h2>
+<% if @treasure.treasure_drops.any? %>
+  <ul>
+    <% @treasure.treasure_drops.each do |treasure_drop| %>
+      <li><%= treasure_drop.drop.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No drops available for this treasure.</p>
+<% end %>
+
+<%= link_to 'Back', treasures_path %>

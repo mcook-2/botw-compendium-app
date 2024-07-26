@@ -1,10 +1,25 @@
 <p style="color: green"><%= notice %></p>
+<h1><%= @material.name %></h1>
 
-<%= render @material %>
+<p><%= @material.description %></p>
 
-<div>
-  <%= link_to "Edit this material", edit_material_path(@material) %> |
-  <%= link_to "Back to materials", materials_path %>
+<% if @material.image_url.present? %>
+  <p>
+    <img src="<%= @material.image_url %>" alt="<%= @material.name %>" />
+  </p>
+<% end %>
 
-  <%= button_to "Destroy this material", @material, method: :delete %>
-</div>
+<p><strong>DLC:</strong> <%= @material.dlc ? 'Yes' : 'No' %></p>
+
+<h2>Locations</h2>
+<% if @material.material_locations.any? %>
+  <ul>
+    <% @material.material_locations.each do |material_location| %>
+      <li><%= material_location.location.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No locations available for this material.</p>
+<% end %>
+
+<%= link_to 'Back', materials_path %>

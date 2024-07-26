@@ -1,10 +1,40 @@
 <p style="color: green"><%= notice %></p>
+<h1><%= @equipment.name %></h1>
 
-<%= render @equipment %>
+<p><%= @equipment.description %></p>
 
-<div>
-  <%= link_to "Edit this equipment", edit_equipment_path(@equipment) %> |
-  <%= link_to "Back to equipment", equipment_index_path %>
+<% if @equipment.image_url.present? %>
+  <p>
+    <img src="<%= @equipment.image_url %>" alt="<%= @equipment.name %>" />
+  </p>
+<% end %>
 
-  <%= button_to "Destroy this equipment", @equipment, method: :delete %>
-</div>
+<p><strong>DLC:</strong> <%= @equipment.dlc ? 'Yes' : 'No' %></p>
+
+<h2>Stats</h2>
+<% if @equipment.equipment_properties.any? %>
+  <ul>
+  <% unique_properties = @equipment.equipment_properties.uniq { |p| [p.attack, p.defense] } %>
+  <% unique_properties.each do |property| %>
+    <li>
+      <strong>Attack:</strong> <%= property.attack.nil? ? 'N/A' : property.attack %> |
+      <strong>Defense:</strong> <%= property.defense.nil? ? 'N/A' : property.defense %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>No stats available for this equipment.</p>
+<% end %>
+
+<h2>Locations</h2>
+<% if @equipment.equipment_locations.any? %>
+  <ul>
+    <% @equipment.equipment_locations.each do |equipment_location| %>
+      <li><%= equipment_location.location.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No locations available for this equipment.</p>
+<% end %>
+
+<%= link_to 'Back', equipment_index_path %>
