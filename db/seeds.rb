@@ -19,85 +19,85 @@ service = BotwApiService.new
 # Fetch and seed creatures
 creatures_data = service.fetch_creatures
 creatures_data.each do |creature|
-  new_creature = Creature.create!(
-    name: creature[:name],
-    description: creature[:description],
-    image_url: creature[:image_url],
-    edible: creature[:edible],
-    hearts_recovered: creature[:hearts_recovered],
-    cooking_effect: creature[:cooking_effect],
-    dlc: creature[:dlc]
-  )
+  new_creature = Creature.find_or_create_by!(id: creature[:id]) do |c|
+    c.name = creature[:name]
+    c.description = creature[:description]
+    c.image_url = creature[:image_url]
+    c.edible = creature[:edible]
+    c.hearts_recovered = creature[:hearts_recovered]
+    c.cooking_effect = creature[:cooking_effect]
+    c.dlc = creature[:dlc]
+  end
 
   # Seed common locations for creatures
   creature[:common_locations]&.each do |location|
     loc = Location.find_or_create_by!(name: location)
-    CreatureLocation.create!(creature: new_creature, location: loc)
+    CreatureLocation.find_or_create_by!(creature: new_creature, location: loc)
   end
 
   # Seed drops for creatures
   creature[:drops]&.each do |drop|
     drp = Drop.find_or_create_by!(name: drop)
-    CreatureDrop.create!(creature: new_creature, drop: drp)
+    CreatureDrop.find_or_create_by!(creature: new_creature, drop: drp)
   end
 end
 
 # Fetch and seed materials
 materials_data = service.fetch_materials
 materials_data.each do |material|
-  new_material = Material.create!(
-    name: material[:name],
-    description: material[:description],
-    image_url: material[:image_url],
-    hearts_recovered: material[:hearts_recovered],
-    cooking_effect: material[:cooking_effect],
-    dlc: material[:dlc]
-  )
+  new_material = Material.find_or_create_by!(id: material[:id]) do |m|
+    m.name = material[:name]
+    m.description = material[:description]
+    m.image_url = material[:image_url]
+    m.hearts_recovered = material[:hearts_recovered]
+    m.cooking_effect = material[:cooking_effect]
+    m.dlc = material[:dlc]
+  end
 
   # Seed common locations for materials
   material[:common_locations]&.each do |location|
     loc = Location.find_or_create_by!(name: location)
-    MaterialLocation.create!(material: new_material, location: loc)
+    MaterialLocation.find_or_create_by!(material: new_material, location: loc)
   end
 end
 
 # Fetch and seed monsters
 monsters_data = service.fetch_monsters
 monsters_data.each do |monster|
-  new_monster = Monster.create!(
-    name: monster[:name],
-    description: monster[:description],
-    image_url: monster[:image_url],
-    dlc: monster[:dlc]
-  )
+  new_monster = Monster.find_or_create_by!(id: monster[:id]) do |m|
+    m.name = monster[:name]
+    m.description = monster[:description]
+    m.image_url = monster[:image_url]
+    m.dlc = monster[:dlc]
+  end
 
   # Seed common locations for monsters
   monster[:common_locations]&.each do |location|
     loc = Location.find_or_create_by!(name: location)
-    MonsterLocation.create!(monster: new_monster, location: loc)
+    MonsterLocation.find_or_create_by!(monster: new_monster, location: loc)
   end
 
   # Seed drops for monsters
   monster[:drops]&.each do |drop|
     drp = Drop.find_or_create_by!(name: drop)
-    MonsterDrop.create!(monster: new_monster, drop: drp)
+    MonsterDrop.find_or_create_by!(monster: new_monster, drop: drp)
   end
 end
 
 # Fetch and seed equipment
 equipment_data = service.fetch_equipment
 equipment_data.each do |equipment|
-  new_equipment = Equipment.create!(
-    name: equipment[:name],
-    description: equipment[:description],
-    image_url: equipment[:image_url],
-    dlc: equipment[:dlc]
-  )
+  new_equipment = Equipment.find_or_create_by!(id: equipment[:id]) do |e|
+    e.name = equipment[:name]
+    e.description = equipment[:description]
+    e.image_url = equipment[:image_url]
+    e.dlc = equipment[:dlc]
+  end
 
   # Seed common locations for equipment
   equipment[:common_locations]&.each do |location|
     loc = Location.find_or_create_by!(name: location)
-    EquipmentLocation.create!(equipment: new_equipment, location: loc)
+    EquipmentLocation.find_or_create_by!(equipment: new_equipment, location: loc)
   end
 
   # Seed properties for equipment

@@ -2,13 +2,13 @@
 
 <h1>Creatures</h1>
 
-<div id="creatures">
-  <% @creatures.each do |creature| %>
-    <%= render creature %>
-    <p>
-      <%= link_to "Show this creature", creature %>
-    </p>
-  <% end %>
+<div class="compendium-container">
+  <div id ="all-entries">
+    <div class="row wrap">
+      <% @creatures.each do |creature| %>
+        <%= render creature %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New creature", new_creature_path %>

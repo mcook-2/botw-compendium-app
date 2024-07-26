@@ -1,37 +1,16 @@
-<div id="<%= dom_id creature %>">
-  <p>
-    <strong>Name:</strong>
-    <%= creature.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= creature.description %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <%= creature.image_url %>
-  </p>
-
-  <p>
-    <strong>Edible:</strong>
-    <%= creature.edible %>
-  </p>
-
-  <p>
-    <strong>Hearts recovered:</strong>
-    <%= creature.hearts_recovered %>
-  </p>
-
-  <p>
-    <strong>Cooking effect:</strong>
-    <%= creature.cooking_effect %>
-  </p>
-
-  <p>
-    <strong>Dlc:</strong>
-    <%= creature.dlc %>
-  </p>
-
-</div>
+<div class="col-full col-sm-half col-md-third col-lg-fourth entry-container">
+  <div class="entry-wrapper">
+    <div class="row">
+      <div class="col-img">
+        <div class="col-img-wrapper">
+          <img src="<%= creature.image_url %>" class="block" alt="<%= creature.name %>">
+        </div>
+      </div>
+      <div class="col-name">
+        <div class="col-name-wrapper">
+          <h3 class="text-gold"><%= creature.name %></h3>
+          <p class="text-blue"><%= creature.id %></p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -90,7 +90,7 @@ class BotwApiService
         entries['data'].each do |item|
           # Extract the properties you need
           equipment_properties = {
-            id_in_compendium: item['id'],
+            id: item['id'],
             properties: {
               attack: item['properties']&.dig('attack'),
               defense: item['properties']&.dig('defense')
@@ -147,7 +147,7 @@ class BotwApiService
   def parse_monster(entry)
     {
       name: entry['name'],
-      id_in_compendium: entry['id'],
+      id: entry['id'],
       description: entry['description'],
       image_url: entry['image'],
       common_locations: entry['common_locations'],
@@ -159,7 +159,7 @@ class BotwApiService
   def parse_equipment(entry)
     {
       name: entry['name'],
-      id_in_compendium: entry['id'],
+      id: entry['id'],
       description: entry['description'],
       image_url: entry['image'],
       common_locations: entry['common_locations'],
@@ -174,7 +174,7 @@ class BotwApiService
   def parse_material(entry)
     {
       name: entry['name'],
-      id_in_compendium: entry['id'],
+      id: entry['id'],
       description: entry['description'],
       image_url: entry['image'],
       common_locations: entry['common_locations'],
@@ -188,7 +188,7 @@ class BotwApiService
     if entry['edible']
       {
         name: entry['name'],
-        id_in_compendium: entry['id'],
+        id: entry['id'],
         description: entry['description'],
         image_url: entry['image'],
         common_locations: entry['common_locations'],
@@ -200,7 +200,7 @@ class BotwApiService
     else
       {
         name: entry['name'],
-        id_in_compendium: entry['id'],
+        id: entry['id'],
         description: entry['description'],
         image_url: entry['image'],
         common_locations: entry['common_locations'],
@@ -214,7 +214,7 @@ class BotwApiService
   def parse_treasure(entry)
     {
       name: entry['name'],
-      id_in_compendium: entry['id'],
+      id: entry['id'],
       description: entry['description'],
       image_url: entry['image'],
       common_locations: entry['common_locations'],
