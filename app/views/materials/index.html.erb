@@ -2,13 +2,13 @@
 
 <h1>Materials</h1>
 
-<div id="materials">
-  <% @materials.each do |material| %>
-    <%= render material %>
-    <p>
-      <%= link_to "Show this material", material %>
-    </p>
-  <% end %>
+<div class="compendium-container">
+  <div id ="all-entries">
+    <div class="row wrap">
+      <% @materials.each do |material| %>
+        <%= render partial: "material", locals: { material: material } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New material", new_material_path %>

@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Monsters</h1>
-
-<div id="monsters">
-  <% @monsters.each do |monster| %>
-    <%= render monster %>
-    <p>
-      <%= link_to "Show this monster", monster %>
-    </p>
-  <% end %>
+<div class="compendium-container">
+  <div id ="all-entries">
+    <div class="row wrap">
+      <% @monsters.each do |monster| %>
+        <%= render monster %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New monster", new_monster_path %>

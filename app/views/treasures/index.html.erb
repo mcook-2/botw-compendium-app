@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Treasures</h1>
-
-<div id="treasures">
-  <% @treasures.each do |treasure| %>
-    <%= render treasure %>
-    <p>
-      <%= link_to "Show this treasure", treasure %>
-    </p>
-  <% end %>
+<div class="compendium-container">
+  <div id ="all-entries">
+    <div class="row wrap">
+      <% @treasures.each do |treasure| %>
+        <%= render treasure %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New treasure", new_treasure_path %>

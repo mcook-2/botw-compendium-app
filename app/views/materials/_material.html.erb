@@ -1,32 +1,16 @@
-<div id="<%= dom_id material %>">
-  <p>
-    <strong>Name:</strong>
-    <%= material.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= material.description %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <%= material.image_url %>
-  </p>
-
-  <p>
-    <strong>Hearts recovered:</strong>
-    <%= material.hearts_recovered %>
-  </p>
-
-  <p>
-    <strong>Cooking effect:</strong>
-    <%= material.cooking_effect %>
-  </p>
-
-  <p>
-    <strong>Dlc:</strong>
-    <%= material.dlc %>
-  </p>
-
-</div>
+<div class="col-full col-sm-half col-md-third col-lg-fourth entry-container">
+  <div class="entry-wrapper">
+    <div class="row">
+      <div class="col-img">
+        <div class="col-img-wrapper">
+          <img src="<%= material.image_url %>" class="block" alt="<%= material.name %>">
+        </div>
+      </div>
+      <div class="col-name">
+        <div class="col-name-wrapper">
+          <h3 class="text-gold"><%= material.name %></h3>
+          <p class="text-blue"><%= material.id %></p>
+        </div>
+      </div>
+    </div>
+  </div>

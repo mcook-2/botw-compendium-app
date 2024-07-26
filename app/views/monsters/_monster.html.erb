@@ -1,22 +1,16 @@
-<div id="<%= dom_id monster %>">
-  <p>
-    <strong>Name:</strong>
-    <%= monster.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= monster.description %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <%= monster.image_url %>
-  </p>
-
-  <p>
-    <strong>Dlc:</strong>
-    <%= monster.dlc %>
-  </p>
-
-</div>
+<div class="col-full col-sm-half col-md-third col-lg-fourth entry-container">
+  <div class="entry-wrapper">
+    <div class="row">
+      <div class="col-img">
+        <div class="col-img-wrapper">
+          <img src="<%= monster.image_url %>" class="block" alt="<%= monster.name %>">
+        </div>
+      </div>
+      <div class="col-name">
+        <div class="col-name-wrapper">
+          <h3 class="text-gold"><%= monster.name %></h3>
+          <p class="text-blue"><%= monster.id %></p>
+        </div>
+      </div>
+    </div>
+  </div>

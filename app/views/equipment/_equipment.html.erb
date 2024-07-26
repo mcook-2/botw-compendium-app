@@ -1,22 +1,16 @@
-<div id="<%= dom_id equipment %>">
-  <p>
-    <strong>Name:</strong>
-    <%= equipment.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= equipment.description %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <%= equipment.image_url %>
-  </p>
-
-  <p>
-    <strong>Dlc:</strong>
-    <%= equipment.dlc %>
-  </p>
-
-</div>
+<div class="col-full col-sm-half col-md-third col-lg-fourth entry-container">
+  <div class="entry-wrapper">
+    <div class="row">
+      <div class="col-img">
+        <div class="col-img-wrapper">
+          <img src="<%= equipment.image_url %>" class="block" alt="<%= equipment.name %>">
+        </div>
+      </div>
+      <div class="col-name">
+        <div class="col-name-wrapper">
+          <h3 class="text-gold"><%= equipment.name %></h3>
+          <p class="text-blue"><%= equipment.id %></p>
+        </div>
+      </div>
+    </div>
+  </div>
