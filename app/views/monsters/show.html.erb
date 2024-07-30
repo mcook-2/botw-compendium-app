@@ -1,36 +1,69 @@
-<p style="color: green"><%= notice %></p>
-<h1><%= @monster.name %></h1>
-
-<p><%= @monster.description %></p>
-
-<% if @monster.image_url.present? %>
-  <p>
-    <img src="<%= @monster.image_url %>" alt="<%= @monster.name %>" />
-  </p>
-<% end %>
-
-<p><strong>DLC:</strong> <%= @monster.dlc ? 'Yes' : 'No' %></p>
-
-<h2>Locations</h2>
-<% if @monster.monster_locations.any? %>
-  <ul>
-    <% @monster.monster_locations.each do |monster_location| %>
-      <li><%= monster_location.location.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No locations available for this monster.</p>
-<% end %>
-
-<h2>Drops</h2>
-<% if @monster.monster_drops.any? %>
-  <ul>
-    <% @monster.monster_drops.each do |monster_drop| %>
-      <li><%= monster_drop.drop.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No drops available for this monster.</p>
-<% end %>
-
-<%= link_to 'Back', monsters_path %>
+<div class="item-container">
+  <div class="compendium">
+    <table>
+      <tbody>
+        <tr>
+          <td class="item-id-name" rowspan="2" colspan="1">
+            <p class="text-gold"><span class="text-blue"><%= @monster.id %></span> <%= @monster.name %></p>
+            <% if @monster.image_url.present? %>
+              <div class="image-container">
+                <a href="<%= @monster.image_url %>" title="<%= @monster.name %>">
+                  <img src="<%= @monster.image_url %>" class="item-img" />
+                </a>
+              </div>
+            <% end %>
+          </td>
+          <td class="description-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Description</b></span>
+              </div>
+            </div>
+            <p class="text-blue font-arial"><%= @monster.description %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="locations-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Common Locations</b></span>
+              </div>
+            </div>
+            <% if @monster.monster_locations.any? %>
+              <div>
+                <% @monster.monster_locations.each do |monster_location| %>
+                  <p class="text-blue font-arial"><%= monster_location.location.name %></p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No locations available for this monster.</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="drops-cell" rowspan="1" colspan="2">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Recoverable Materials</b></span>
+              </div>
+            </div>
+            <% if @monster.monster_drops.any? %>
+              <div>
+                <% @monster.monster_drops.each do |monster_drop| %>
+                  <p class="text-blue font-arial"><%= monster_drop.drop.name %><p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No drops available for this monster.</p>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class= "back-link-wrapper">
+<div class= "back-link">
+<%= link_to 'Back', monsters_path, class: 'back-link-page' %>
+</div>
+</div>

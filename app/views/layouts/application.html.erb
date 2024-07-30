@@ -1,67 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BotwCompendiumApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>BotwCompendiumApp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <header>
+    <% unless current_page?(search_path) %>
+      <div class="row space-between">
+        <div class="col-fluid">
+          <h2 class="app-header">My Rails Application</h2>
+        </div>
+        <div class="col-fluid">
+          <%= link_to search_path, class: 'search-anchor' do %>
+            <%= image_tag 'botw-sheikah.png', alt: 'Sheikah', class: 'nav-img search-img' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
+    <% if current_page?(search_path) %>
+      <%= form_with url: search_path, method: :get, local: true, class: "search-form" do |form| %>
+        <div>
+          <%= form.label :query, "Search" %>
+          <%= form.text_field :query, value: params[:query], placeholder: "Search...", class: "search-input" %>
 
+          <%= form.label :category, "Category" %>
+          <%= form.select :category, options_for_select(
+            [["All", "all"], ["Creatures", "creatures"], ["Monsters", "monsters"], ["Materials", "materials"], ["Equipment", "equipment"], ["Treasures", "treasures"]],
+            params[:category]
+          ), class: "search-dropdown" %>
 
+          <%= form.label :sort, "Sort by" %>
+          <%= form.select :sort, options_for_select(
+            [["Name", "name"], ["Id", "id"]],
+            params[:sort]
+          ), class: "search-dropdown" %>
 
-  </head>
+          <%= form.label :per_page, "Results per page" %>
+          <%= form.select :per_page, options_for_select([10, 20, 50, 100, 389], params[:per_page]), class: "search-dropdown" %>
 
-<header>
-  <div class="col-fluid">
-    <h2>My Rails Application</h2>
-  </div>
-</header>
+          <%= form.submit "Search", class: "search-button" %>
+        </div>
+      <% end %>
+    <% end %>
+  </header>
 
-  <body>
-    <main>
-      <div class ="app-container">
-        <nav>
-          <div class="nav-header">
-            <div class="nav-item">
-              <%= link_to 'Home', root_path, class: 'nav-link' %>
-            </div>
-            <div class="nav-item">
-              <%= link_to 'about', about_path, class: 'nav-link' %>
-            </div>
-            <div class="nav-item">
-              <%= link_to creatures_path, class: 'nav-link' do %>
-                <%= image_tag 'creatures.png', alt: 'Creatures', class: 'nav-img' %>
-              <% end %>
-            </div>
-            <div class="nav-item">
-              <%= link_to monsters_path, class: 'nav-link' do %>
-                <%= image_tag 'monsters.png', alt: 'Monsters', class: 'nav-img' %>
-              <% end %>
-            </div>
-            <div class="nav-item">
-              <%= link_to materials_path, class: 'nav-link' do %>
-                <%= image_tag 'materials.png', alt: 'Materials', class: 'nav-img' %>
-              <% end %>
-            </div>
-            <div class="nav-item">
-              <%= link_to equipment_index_path, class: 'nav-link' do %>
-                <%= image_tag 'equipment.png', alt: 'Equipment', class: 'nav-img' %>
-              <% end %>
-            </div>
-            <div class="nav-item">
-              <%= link_to treasures_path, class: 'nav-link' do %>
-                <%= image_tag 'treasures.png', alt: 'Treasures', class: 'nav-img' %>
-              <% end %>
-            </div>
+  <main>
+    <div class="app-container">
+      <nav>
+        <div class="nav-header">
+          <div class="nav-page text-gold">
+            <%= link_to 'Home', root_path, class: 'nav-link-page' %>
           </div>
-        </nav>
+          <div class="nav-item">
+            <%= link_to creatures_path, class: 'nav-link' do %>
+              <%= image_tag 'creatures.png', alt: 'Creatures', class: 'nav-img' %>
+            <% end %>
+          </div>
+          <div class="nav-item">
+            <%= link_to monsters_path, class: 'nav-link' do %>
+              <%= image_tag 'monsters.png', alt: 'Monsters', class: 'nav-img' %>
+            <% end %>
+          </div>
+          <div class="nav-item">
+            <%= link_to materials_path, class: 'nav-link' do %>
+              <%= image_tag 'materials.png', alt: 'Materials', class: 'nav-img' %>
+            <% end %>
+          </div>
+          <div class="nav-item">
+            <%= link_to equipment_index_path, class: 'nav-link' do %>
+              <%= image_tag 'equipment.png', alt: 'Equipment', class: 'nav-img' %>
+            <% end %>
+          </div>
+          <div class="nav-item">
+            <%= link_to treasures_path, class: 'nav-link' do %>
+              <%= image_tag 'treasures.png', alt: 'Treasures', class: 'nav-img' %>
+            <% end %>
+          </div>
+          <div class="nav-page text-gold">
+            <%= link_to 'about', about_path, class: 'nav-link-page' %>
+          </div>
+        </div>
+      </nav>
 
       <%= yield %>
-      </div>
-    </main>
-  </body>
-
-
-      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    </div>
+  </main>
+</body>
 </html>

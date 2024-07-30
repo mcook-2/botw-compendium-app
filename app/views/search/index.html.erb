@@ -1,0 +1,31 @@
+<h1>Search Results " <span class="search-text"><%= params[:query].present? ? params[:query] : "" %></span> "</h1>
+<div class="compendium-container">
+  <div id="all-entries">
+    <div class="row wrap">
+      <% @results.each do |item| %>
+        <div class="col-full col-sm-half col-md-third col-lg-fourth entry-container">
+          <div class="entry-wrapper">
+            <a href="<%= polymorphic_path(item) %>" style="text-decoration: none; color: inherit;">
+              <div class="row">
+                <div class="col-img">
+                  <div class="col-img-wrapper">
+                    <img src="<%= item.image_url %>" class="block" alt="<%= item.name %>">
+                  </div>
+                </div>
+                <div class="col-name">
+                  <div class="col-name-wrapper">
+                    <h3 class="text-gold"><%= item.name %></h3>
+                    <p class="text-blue"><%= item.id %></p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <%= paginate @results %>
+</div>

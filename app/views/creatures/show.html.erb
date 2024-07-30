@@ -1,36 +1,69 @@
-<p style="color: green"><%= notice %></p>
-<h1><%= @creature.name %></h1>
-
-<p><%= @creature.description %></p>
-
-<% if @creature.image_url.present? %>
-  <p>
-    <img src="<%= @creature.image_url %>" alt="<%= @creature.name %>" />
-  </p>
-<% end %>
-
-<p><strong>DLC:</strong> <%= @creature.dlc ? 'Yes' : 'No' %></p>
-
-<h2>Locations</h2>
-<% if @creature.creature_locations.any? %>
-  <ul>
-    <% @creature.creature_locations.each do |creature_location| %>
-      <li><%= creature_location.location.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No locations available for this creature.</p>
-<% end %>
-
-<h2>Drops</h2>
-<% if @creature.creature_drops.any? %>
-  <ul>
-    <% @creature.creature_drops.each do |creature_drop| %>
-      <li><%= creature_drop.drop.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No drops available for this creature.</p>
-<% end %>
-
-<%= link_to 'Back', creatures_path %>
+<div class="item-container">
+  <div class="compendium">
+    <table>
+      <tbody>
+        <tr>
+          <td class="item-id-name" rowspan="2" colspan="1">
+            <p class="text-gold"><span class="text-blue"><%= @creature.id %></span> <%= @creature.name %></p>
+            <% if @creature.image_url.present? %>
+              <div class="image-container">
+                <a href="<%= @creature.image_url %>" title="<%= @creature.name %>">
+                  <img src="<%= @creature.image_url %>" class="item-img" />
+                </a>
+              </div>
+            <% end %>
+          </td>
+          <td class="description-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Description</b></span>
+              </div>
+            </div>
+            <p class="text-blue font-arial"><%= @creature.description %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="locations-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Common Locations</b></span>
+              </div>
+            </div>
+            <% if @creature.creature_locations.any? %>
+              <div>
+                <% @creature.creature_locations.each do |creature_location| %>
+                  <p class="text-blue font-arial"><%= creature_location.location.name %></p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No locations available for this creature.</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="drops-cell" rowspan="1" colspan="2">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Recoverable Materials</b></span>
+              </div>
+            </div>
+            <% if @creature.creature_drops.any? %>
+              <div>
+                <% @creature.creature_drops.each do |creature_drop| %>
+                  <p class="text-blue font-arial"><%= creature_drop.drop.name %><p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No drops available for this creature.</p>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class= "back-link-wrapper">
+<div class= "back-link">
+<%= link_to 'Back', creatures_path, class: 'back-link-page' %>
+</div>
+</div>

@@ -1,25 +1,67 @@
-<p style="color: green"><%= notice %></p>
-<h1><%= @material.name %></h1>
-
-<p><%= @material.description %></p>
-
-<% if @material.image_url.present? %>
-  <p>
-    <img src="<%= @material.image_url %>" alt="<%= @material.name %>" />
-  </p>
-<% end %>
-
-<p><strong>DLC:</strong> <%= @material.dlc ? 'Yes' : 'No' %></p>
-
-<h2>Locations</h2>
-<% if @material.material_locations.any? %>
-  <ul>
-    <% @material.material_locations.each do |material_location| %>
-      <li><%= material_location.location.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No locations available for this material.</p>
-<% end %>
-
-<%= link_to 'Back', materials_path %>
+<div class="item-container">
+  <div class="compendium">
+    <table>
+      <tbody>
+        <tr>
+          <td class="item-id-name" rowspan="2" colspan="1">
+            <p class="text-gold"><span class="text-blue"><%= @material.id %></span> <%= @material.name %></p>
+            <% if @material.image_url.present? %>
+              <div class="image-container">
+                <a href="<%= @material.image_url %>" title="<%= @material.name %>">
+                  <img src="<%= @material.image_url %>" class="item-img" />
+                </a>
+              </div>
+            <% end %>
+          </td>
+          <td class="description-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Description</b></span>
+              </div>
+            </div>
+            <p class="text-blue font-arial"><%= @material.description %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="locations-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Common Locations</b></span>
+              </div>
+            </div>
+            <% if @material.material_locations.any? %>
+              <div>
+                <% @material.material_locations.each do |material_location| %>
+                  <p class="text-blue font-arial"><%= material_location.location.name %></p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No locations available for this material.</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="cooking-effect-cell" rowspan="1" colspan="2">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Cooking Effects</b></span>
+              </div>
+            </div>
+            <% if @material.cooking_effect.present? %>
+              <div>
+                <p class="text-blue font-arial"><%= @material.cooking_effect %></p>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No cooking effect available for this material.</p>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class= "back-link-wrapper">
+  <div class= "back-link">
+    <%= link_to 'Back', materials_path, class: 'back-link-page' %>
+  </div>
+</div>
