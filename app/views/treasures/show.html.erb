@@ -1,37 +1,69 @@
-<p style="color: green"><%= notice %></p>
-
-<h1><%= @treasure.name %></h1>
-
-<p><%= @treasure.description %></p>
-
-<% if @treasure.image_url.present? %>
-  <p>
-    <img src="<%= @treasure.image_url %>" alt="<%= @treasure.name %>" />
-  </p>
-<% end %>
-
-<p><strong>DLC:</strong> <%= @treasure.dlc ? 'Yes' : 'No' %></p>
-
-<h2>Locations</h2>
-<% if @treasure.treasure_locations.any? %>
-  <ul>
-    <% @treasure.treasure_locations.each do |treasure_location| %>
-      <li><%= treasure_location.location.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No locations available for this treasure.</p>
-<% end %>
-
-<h2>Drops</h2>
-<% if @treasure.treasure_drops.any? %>
-  <ul>
-    <% @treasure.treasure_drops.each do |treasure_drop| %>
-      <li><%= treasure_drop.drop.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No drops available for this treasure.</p>
-<% end %>
-
-<%= link_to 'Back', treasures_path %>
+<div class="item-container">
+  <div class="compendium">
+    <table>
+      <tbody>
+        <tr>
+          <td class="item-id-name" rowspan="2" colspan="1">
+            <p class="text-gold"><span class="text-blue"><%= @treasure.id %></span> <%= @treasure.name %></p>
+            <% if @treasure.image_url.present? %>
+              <div class="image-container">
+                <a href="<%= @treasure.image_url %>" title="<%= @treasure.name %>">
+                  <img src="<%= @treasure.image_url %>" class="item-img" />
+                </a>
+              </div>
+            <% end %>
+          </td>
+          <td class="description-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Description</b></span>
+              </div>
+            </div>
+            <p class="text-blue font-arial"><%= @treasure.description %></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="locations-cell" rowspan="1" colspan="1">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Common Locations</b></span>
+              </div>
+            </div>
+            <% if @treasure.treasure_locations.any? %>
+              <div>
+                <% @treasure.treasure_locations.each do |treasure_location| %>
+                  <p class="text-blue font-arial"><%= treasure_location.location.name %></p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No locations available for this treasure.</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="drops-cell" rowspan="1" colspan="2">
+            <div class="compendium-heading">
+              <div>
+                <span class="text-gold"><b>Recoverable Materials</b></span>
+              </div>
+            </div>
+            <% if @treasure.treasure_drops.any? %>
+              <div>
+                <% @treasure.treasure_drops.each do |treasure_drop| %>
+                  <p class="text-blue font-arial"><%= treasure_drop.drop.name %><p>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-blue font-arial">No drops available for this treasure.</p>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class= "back-link-wrapper">
+<div class= "back-link">
+<%= link_to 'Back', treasures_path, class: 'back-link-page' %>
+</div>
+</div>
