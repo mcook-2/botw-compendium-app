@@ -31,7 +31,6 @@ class BotwApiService
     if response.success?
       entries = JSON.parse(response.body)
 
-      # Check if 'data' is an array before iterating
       if entries['data'].is_a?(Array)
         entries['data'].each do |item|
           all_common_locations.concat(item['common_locations']) if item['common_locations']
@@ -40,11 +39,10 @@ class BotwApiService
         puts "Warning: 'data' is not an array or is missing"
       end
     else
-      # Handle the error case, e.g., logging, raising an error, etc.
       puts "Error: Unable to fetch data from the API"
     end
 
-    # Remove duplicates if needed
+    # Remove duplicates
     all_common_locations.uniq!
 
     # Return the result
@@ -58,7 +56,6 @@ class BotwApiService
     if response.success?
       entries = JSON.parse(response.body)
 
-      # Check if 'data' is an array before iterating
       if entries['data'].is_a?(Array)
         entries['data'].each do |item|
           all_drops.concat(item['drops']) if item['drops']
@@ -67,11 +64,10 @@ class BotwApiService
         puts "Warning: 'data' is not an array or is missing"
       end
     else
-      # Handle the error case, e.g., logging, raising an error, etc.
       puts "Error: Unable to fetch data from the API"
     end
 
-    # Remove duplicates if needed
+    # Remove duplicates
     all_drops.uniq!
 
     # Return the result
@@ -85,10 +81,9 @@ class BotwApiService
     if response.success?
       entries = JSON.parse(response.body)
 
-      # Check if 'data' is an array before iterating
       if entries['data'].is_a?(Array)
         entries['data'].each do |item|
-          # Extract the properties you need
+          # Extract the properties
           equipment_properties = {
             id: item['id'],
             properties: {
@@ -102,7 +97,6 @@ class BotwApiService
         puts "Warning: 'data' is not an array or is missing"
       end
     else
-      # Handle the error case, e.g., logging, raising an error, etc.
       puts "Error: Unable to fetch data from the API"
     end
 
@@ -119,7 +113,6 @@ class BotwApiService
       entries = JSON.parse(response.body)['data']
       entries.map { |entry| parse_entry(entry) }
     else
-      # Handle the error case, e.g., logging, raising an error, etc.
       []
     end
   end
@@ -138,8 +131,6 @@ class BotwApiService
     when 'treasure'
       parse_treasure(entry)
     else
-
-      # Handle unrecognized categories if any
       {}
     end
   end

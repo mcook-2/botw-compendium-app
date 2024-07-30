@@ -1,18 +1,9 @@
 Rails.application.routes.draw do
-  resources :treasure_drops
-  resources :treasure_locations
-  resources :creature_drops
-  resources :creature_locations
-  resources :material_locations
-  resources :equipment_locations
-  resources :monster_drops
-  resources :monster_locations
   resources :drops
   resources :locations
   resources :treasures
   resources :creatures
   resources :materials
-  resources :equipment_properties
   resources :equipment
   resources :monsters
 
