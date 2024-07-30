@@ -105,7 +105,7 @@ header {
 }
 
 .nav-link-page:hover{
-  box-shadow: inset 100px 0 0 0 rgba(206, 197, 1, 0.85);
+  box-shadow: inset 1000px 0 0 0 rgba(206, 197, 1, 0.85);
   color: rgb(26, 20, 20);
 }
 
@@ -160,6 +160,14 @@ header {
   margin: auto;
 }
 
+.home-container{
+  padding: 1em;
+}
+
+.home-container li{
+  list-style: none;
+}
+
 /* Styles */
 
 .app-header{
@@ -195,6 +203,10 @@ header {
 
 .font-arial{
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center{
+  text-align: center;
 }
 
 
@@ -400,6 +412,11 @@ header {
 
 .entry-container {
   max-width: 90%;
+}
+
+.about-container{
+  max-width: 90%;
+  padding: 1em;
 }
 
 /* Utility Flex */

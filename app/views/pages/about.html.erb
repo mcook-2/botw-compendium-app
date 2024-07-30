@@ -1,7 +1,29 @@
-<h1>About Us</h1>
-<p>Welcome to the About page. Here you can learn more about our application and team.</p>
+<div class="about-container">
+  <h1>About</h1>
 
-<p>
-https://gadhagod.github.io/Hyrule-Compendium-API/#/
-https://www.youtube.com/watch?v=1c_tHifJVRI
-</p>
+  <div class="about-wrapper">
+    <h3>API</h3>
+    <p class="text-gold">
+      All data grabbed from
+      <span class="nav-page">
+        <a class="nav-link-page" href="https://gadhagod.github.io/Hyrule-Compendium-API/#/" target="_blank" rel="noopener noreferrer">
+          Hyrule Compendium API
+        </a>
+      </span>
+    </p>
+
+    <h3>Database Schema</h3>
+    <p class="text-gold">
+      Click
+      <span class="nav-page">
+        <%= link_to 'here', image_path('botw-compendium-db-schema.png'), target: "_blank", rel: "noopener noreferrer", class: "nav-link-page" %>
+      </span> to view
+    </p>
+  </div>
+
+  <footer>
+    <div>
+      <p class="text-gold">2024 RRC. ~ M Cook ~</p>
+    </div>
+  </footer>
+</div>
